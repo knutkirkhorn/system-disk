@@ -1,0 +1,29 @@
+{
+  "name": "system-disk",
+  "version": "1.0.0",
+  "description": "Get the system disk of the computer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knutakir/system-disk.git"
+  },
+  "keywords": [
+    "system",
+    "disk",
+    "drive",
+    "system-disk",
+    "windows",
+    "linux",
+    "macosx",
+    "unix"
+  ],
+  "author": "Knut Kirkhorn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Knutakir/system-disk/issues"
+  },
+  "homepage": "https://github.com/Knutakir/system-disk#readme"
+}
