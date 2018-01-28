@@ -8,3 +8,11 @@ test('Able to return a disk', t => {
         t.fail();
     });
 });
+
+test('Return correct type', t => {
+    return m().then(disk => {
+        t.is(typeof disk, 'string');
+    }).catch(() => {
+        t.fail();
+    });
+});
