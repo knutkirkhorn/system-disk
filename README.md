@@ -17,7 +17,7 @@ systemDisk().then(disk => {
 
 ## API
 ### systemDisk()
-Returns the disk on the computer where the operative system is stored.
+Returns the disk on the computer where the operating system is stored (the boot disk).
 
 ## License
 MIT © [Knut Kirkhorn](LICENSE)
