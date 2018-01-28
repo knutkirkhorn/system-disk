@@ -14,7 +14,7 @@ module.exports = () => {
             if (err || stderr) {
                 reject(new Error('Error: Something wrong happened.'));
             }
-            resolve(stdout.split('\n')[0]);
+            resolve(stdout.split('\r\n')[0]);
         });
     });
 }
