@@ -7,14 +7,19 @@ module.exports = () => {
         if (process.platform === 'win32') {
             command = 'echo %SystemDrive%';
         } else {
-            reject(new Error('Not imlpemented'));
+            command = `lsblk -io KNAME,TYPE | awk '$2 == "disk"'`;
         }
 
         exec(command, (err, stdout, stderr) => {
             if (err || stderr) {
                 reject(new Error('Error: Something wrong happened.'));
             }
-            resolve(stdout.split('\r\n')[0]);
+            if (process.platform === 'win32') {
+                resolve(stdout.split('\r\n')[0]);
+            } else {
+                resolve(stdout.split('   ')[0]);
+            }
+            
         });
     });
 }
