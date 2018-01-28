@@ -16,7 +16,7 @@ systemDisk().then(disk => {
 ```
 
 ## API
-### freeSpace()
+### systemDisk()
 Returns the disk on the computer where the operative system is stored.
 
 ## License
