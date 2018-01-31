@@ -1,4 +1,4 @@
-# system-disk
+# system-disk [![Build Status](https://travis-ci.org/Knutakir/system-disk.svg?branch=master)](https://travis-ci.org/Knutakir/system-disk)
 > Get the system disk of the computer (e.g. `C:` or `/dev/sda`)
 
 ## Installation
