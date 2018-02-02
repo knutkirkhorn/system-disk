@@ -12,7 +12,7 @@ module.exports = () => {
                 command = `df -l | awk '$9 == "/"'`;
                 break;
             default:
-                command = `lsblk -io KNAME,TYPE | awk '$2 == "disk"'`;
+                command = `df -l | awk '$6 == "/"'`;
                 break;
         }
 
