@@ -15,11 +15,19 @@ systemDisk().then(disk => {
     console.log(disk);
     // => C:
 });
+
+systemDisk.getAllConnected().then(disks => {
+    console.log(disks);
+    // => [ 'C:', 'D:', 'E:' ]
+});
 ```
 
 ## API
 ### systemDisk()
 Returns the disk on the computer where the operating system is stored (the boot disk).
+
+### systemDisk.getAllConnected()
+Returns all disks that are connected to the computer. 
 
 ## Related
 - [@knutkirkhorn/free-space](https://github.com/Knutakir/free-space) - Get the amount of free space for a drive
