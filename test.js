@@ -2,10 +2,8 @@ import test from 'ava';
 import m from '.';
 
 test('Able to return a disk', t => {
-    return m().then(disk => {
-        t.pass();
-    }).catch(() => {
-        t.fail();
+    t.notThrows(() => {
+        m();
     });
 });
 
@@ -14,5 +12,11 @@ test('Return correct type', t => {
         t.is(typeof disk, 'string');
     }).catch(() => {
         t.fail();
+    });
+});
+
+test('Get all disks', t => {
+    t.notThrows(() => {
+        m.getAllConnected();
     });
 });
