@@ -27,7 +27,7 @@ systemDisk.getAllConnected().then(disks => {
 Returns the disk on the computer where the operating system is stored (the boot disk).
 
 ### systemDisk.getAllConnected()
-Returns all disks that are connected to the computer. 
+Returns an array of all disks that are connected to the computer. 
 
 ## Related
 - [@knutkirkhorn/free-space](https://github.com/Knutakir/free-space) - Get the amount of free space for a drive
