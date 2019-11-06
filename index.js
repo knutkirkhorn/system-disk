@@ -1,9 +1,11 @@
 'use strict';
-const exec = require('child_process').exec;
+
+const {exec} = require('child_process');
 
 module.exports = () => {
     return new Promise((resolve, reject) => {
         let command;
+        
         switch (process.platform) {
             case 'win32':
                 command = 'echo %SystemDrive%';
@@ -18,7 +20,7 @@ module.exports = () => {
 
         exec(command, (err, stdout, stderr) => {
             if (err || stderr) {
-                reject(new Error('Error: Something wrong happened.'));
+                reject(new Error('Something wrong happened.'));
             }
 
             switch (process.platform) {
@@ -39,27 +41,31 @@ module.exports = () => {
 module.exports.getAllConnected = () => {
     return new Promise((resolve, reject) => {
         let command;
+
         switch (process.platform) {
             case 'win32':
                 command = 'wmic logicaldisk get name';
                 break;
             case 'darwin':
-                command = ``;
+                command = `df -T | awk '$2 != "devtmpfs" && $2 != "tmpfs" && $2 != "squashfs"'`;
                 break;
             default:
-                command = ``;
+                command = `df -T | awk '$2 != "devtmpfs" && $2 != "tmpfs" && $2 != "squashfs"'`;
                 break;
         }
 
         exec(command, (err, stdout, stderr) => {
             if (err || stderr) {
-                reject(new Error('Error: Something wrong happened.'));
+                reject(new Error('Something wrong happened.'));
             }
+
+            const diskArray = [];
+            let tempdiskArray;
 
             switch (process.platform) {
                 case 'win32':
-                    const tempdiskArray = stdout.split('Name')[1].split('\n');
-                    let diskArray = [];
+                    tempdiskArray = stdout.split('Name')[1].split('\n');
+                    
                     for (let i = 0; i < tempdiskArray.length; i++) {
                         if (tempdiskArray[i].includes(':')) {
                             diskArray.push(tempdiskArray[i].split('    \r\r')[0]);
@@ -69,13 +75,31 @@ module.exports.getAllConnected = () => {
                     resolve(diskArray);
                     break;
                 case 'darwin':
-                    throw new Error('Not implemented');
-                    break;
+                    tempdiskArray = stdout.split('\n');
+
+                    // Start at one to skip the header row of the input
+                    for (let i = 1; i < tempdiskArray.length; i++) {
+                        if (tempdiskArray[i].includes('      ')) {
+                            const currentDisk = tempdiskArray[i].split('      ')[0];
+                            diskArray.push(currentDisk);
+                        }
+                    }
+
+                    resolve(diskArray);
                 default:
-                    throw new Error('Not implemented');
+                    tempdiskArray = stdout.split('\n');
+
+                    // Start at one to skip the header row of the input
+                    for (let i = 1; i < tempdiskArray.length; i++) {
+                        if (tempdiskArray[i].includes('      ')) {
+                            const currentDisk = tempdiskArray[i].split('      ')[0];
+                            diskArray.push(currentDisk);
+                        }
+                    }
+
+                    resolve(diskArray);
                     break;
             }
-            resolve('NOT')
         });
     });
 };

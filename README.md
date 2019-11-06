@@ -11,6 +11,7 @@ $ npm install system-disk
 ## Usage
 ```js
 const systemDisk = require('system-disk');
+
 systemDisk().then(disk => {
     console.log(disk);
     // => C:
