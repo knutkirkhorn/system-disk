@@ -1,4 +1,4 @@
-# system-disk [![Build Status](https://travis-ci.org/Knutakir/system-disk.svg?branch=master)](https://travis-ci.org/Knutakir/system-disk)
+# system-disk
 > Get the system disk of the computer (e.g. `C:` or `/dev/sda`)
 
 For Windows this module uses the [`%SystemDrive%`](http://environmentvariables.org/SystemDrive) environment variable and the [`df`](https://en.wikipedia.org/wiki/Df_(Unix)) command for macOS and Linux.
