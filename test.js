@@ -1,18 +1,20 @@
-import test from 'ava';
-import m from '.';
+const test = require('ava');
+const systemDisk = require('.');
 
-test('Able to return a disk', t => {
-    return m().then(disk => {
+test('Able to return a disk', async t => {
+    try {
+        await systemDisk();
         t.pass();
-    }).catch(() => {
+    } catch {
         t.fail();
-    });
+    }
 });
 
-test('Return correct type', t => {
-    return m().then(disk => {
+test('Return correct type', async t => {
+    try {
+        const disk = await systemDisk();
         t.is(typeof disk, 'string');
-    }).catch(() => {
+    } catch {
         t.fail();
-    });
+    }
 });
