@@ -22,7 +22,7 @@ systemDisk().then(disk => {
 Returns the disk on the computer where the operating system is stored (the boot disk).
 
 ## Related
-- [@knutkirkhorn/free-space](https://github.com/Knutakir/free-space) - Get the amount of free space for a drive
+- [@knutkirkhorn/free-space](https://github.com/knutkirkhorn/free-space) - Get the amount of free space for a drive
 
 ## License
 MIT © [Knut Kirkhorn](LICENSE)
