@@ -1,6 +1,6 @@
 {
   "name": "system-disk",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Get the system disk of the computer",
   "main": "index.js",
   "scripts": {
