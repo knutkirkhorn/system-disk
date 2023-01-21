@@ -7,6 +7,9 @@
     "test": "ava",
     "lint": "eslint ."
   },
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/knutkirkhorn/system-disk.git"
