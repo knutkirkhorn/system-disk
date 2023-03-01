@@ -1,34 +1,29 @@
-const {exec} = require('child_process');
+import {promisify} from 'node:util';
+import {exec} from 'node:child_process';
 
-module.exports = () => new Promise((resolve, reject) => {
-    let command;
-    switch (process.platform) {
-        case 'win32':
-            command = 'echo %SystemDrive%';
-            break;
-        case 'darwin':
-            command = 'df -l | awk \'$9 == "/"\'';
-            break;
-        default:
-            command = 'df -l | awk \'$6 == "/"\'';
-            break;
-    }
+const execAsync = promisify(exec);
+const commands = {
+	win32: 'echo %SystemDrive%',
+	darwin: 'df -l | awk \'$9 == "/"\''
+};
 
-    exec(command, (err, stdout, stderr) => {
-        if (err || stderr) {
-            reject(new Error('Error: Something wrong happened.'));
-        }
+export default async function systemDisk() {
+	const command = process.platform in commands
+		? commands[process.platform]
+		: 'df -l | awk \'$6 == "/"\'';
+	const {error, stdout, stderr} = await execAsync(command);
 
-        switch (process.platform) {
-            case 'win32':
-                resolve(stdout.split('\r\n')[0]);
-                break;
-            case 'darwin':
-                resolve(stdout.split('  ')[0]);
-                break;
-            default:
-                resolve(stdout.split('   ')[0]);
-                break;
-        }
-    });
-});
+	if (error || stderr) {
+		throw new Error('Error: Something wrong happened.');
+	}
+
+	if (process.platform === 'win32') {
+		return stdout.split('\r\n')[0];
+	}
+
+	if (process.platform === 'darwin') {
+		return stdout.split('  ')[0];
+	}
+
+	return stdout.split('   ')[0];
+}

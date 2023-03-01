@@ -7,17 +7,17 @@ For Windows this module uses the [`%SystemDrive%`](http://environmentvariables.o
 ## Installation
 
 ```
-$ npm install system-disk
+npm install system-disk
 ```
 
 ## Usage
 
 ```js
-const systemDisk = require('system-disk');
-systemDisk().then(disk => {
-    console.log(disk);
-    // => C:
-});
+import systemDisk from 'system-disk';
+
+const disk = await systemDisk();
+console.log(disk);
+// => C:
 ```
 
 ## API
