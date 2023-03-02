@@ -6,7 +6,7 @@ const execAsync = promisify(exec);
 export default async function systemDisk() {
 	const command = process.platform === 'win32'
 		? 'echo %SystemDrive%'
-		: 'mount | awk \'$3 == "/"\'';
+		: 'mount | awk \'$3 == "/" {print $1}\'';
 	const {error, stdout, stderr} = await execAsync(command);
 
 	if (error || stderr) {
